@@ -8,15 +8,19 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		<meta name="apple-mobile-web-app-title" content="Kevine 🎂" />
-		<meta name="theme-color" content="#FFD700" />
+		<meta name="theme-color" content="#000820" />
+		<meta name="theme-color" content="#FFD700" media="(prefers-color-scheme: light)" />
 		<meta name="format-detection" content="telephone=no" />
+		<!-- Compatibilité Samsung, Huawei, Xiaomi, Oppo, etc. -->
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="width" />
 
 		<!-- ====== Open Graph / WhatsApp Preview ====== -->
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://kevine-aniv.vercel.app" />
+		<meta property="og:url" content="https://kevine-roan.vercel.app" />
 		<meta property="og:title" content="🎂 Joyeux Anniversaire Kevine 🎂" />
 		<meta property="og:description" content="✨ Un jour très spécial pour toi, Kevine ! Avec tout notre amour et nos vœux les plus sincères. 🌸💗" />
-		<meta property="og:image" content="https://kevine-aniv.vercel.app/images/og-image.png" />
+		<meta property="og:image" content="https://kevine-roan.vercel.app/images/og-image.png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:image:alt" content="Joyeux Anniversaire Kevine" />
@@ -25,7 +29,7 @@
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="🎂 Joyeux Anniversaire Kevine 🎂" />
 		<meta name="twitter:description" content="✨ Un jour très spécial pour toi, Kevine !" />
-		<meta name="twitter:image" content="https://kevine-aniv.vercel.app/images/og-image.png" />
+		<meta name="twitter:image" content="https://kevine-roan.vercel.app/images/og-image.png" />
 		<!-- ============================================ -->
 
 		<link rel="shortcut icon" type="image/png" href="images/icon-192.png" />
@@ -741,6 +745,37 @@
 		}
 
 		/* iPhone SE (375px) et petits écrans */
+		/* Très petits écrans : anciens Android, Galaxy A01/A02, Tecno, Itel (320px) */
+		@media (max-width: 320px) {
+			.start-title-neon {
+				font-size: clamp(1.4rem, 8vw, 2rem);
+			}
+			.start-button {
+				font-size: 1rem !important;
+				padding: 0.7rem 1.5rem !important;
+				min-width: 160px;
+			}
+			.intro-text {
+				font-size: clamp(1.2rem, 7vw, 2rem);
+				padding: 0.4rem;
+			}
+			.intro-countdown {
+				font-size: clamp(3rem, 15vw, 5rem);
+			}
+			.wish-text {
+				font-size: 0.75rem;
+				max-width: 88vw;
+			}
+			.wish-image {
+				width: clamp(110px, 38vw, 160px);
+				height: clamp(147px, 51vw, 213px);
+			}
+			.stop-wishes-text-btn {
+				font-size: 0.75rem;
+				padding: 0.5rem 1rem;
+			}
+		}
+
 		@media (max-width: 390px) {
 			.start-title-neon {
 				font-size: clamp(1.8rem, 9vw, 3rem);
