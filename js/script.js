@@ -560,7 +560,7 @@ store.subscribe(handleStateChange);
 
 // Pesan
 const WISH_MESSAGES = [
-	"Happy 18th Birthday, my friend...",
+	"Happy 17th Birthday, my friend...",
 	"Another year with you. Still my favorite feeling.",
 	"With you, everything feels right. Thank you for being here.",
 	"Happy anniversary to us. Still choosing you. ❤️",
@@ -1643,7 +1643,7 @@ function startIntro() {
 			showIntroText(countdown, true);
 			// CUSTOM1
 			setTimeout(() => {
-				showIntroText('Happy 18th\nBirthday\nKevine my friend\n💗', false);
+				showIntroText('Happy 17th\nBirthday\nKevine my friend\n💗', false);
 				
 				// Sau khi "HAPPY NEW YEAR" hiển thị 1 giây (0.8s animation + 0.2s), bắt đầu pháo hoa ngay
 				setTimeout(() => {
