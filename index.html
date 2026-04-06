@@ -1404,6 +1404,33 @@
 		</script>
 
 		<script>
+		// ===== ENREGISTREMENT SERVICE WORKER =====
+		// DOIT être exécuté en premier, TOUJOURS, indépendamment de tout autre état.
+		// C'est lui qui permet le fonctionnement hors ligne.
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', () => {
+				navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(reg => {
+					console.log('✅ SW enregistré:', reg.scope);
+					// Forcer l'activation immédiate si mise à jour disponible
+					if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+					reg.addEventListener('updatefound', () => {
+						const newWorker = reg.installing;
+						if (newWorker) {
+							newWorker.addEventListener('statechange', () => {
+								if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+									newWorker.postMessage({ type: 'SKIP_WAITING' });
+								}
+							});
+						}
+					});
+				}).catch(err => {
+					console.warn('⚠️ SW erreur:', err);
+				});
+			});
+		}
+		</script>
+
+		<script>
 		(function() {
 			const INSTALL_KEY = 'pwa-dismissed';
 			if (localStorage.getItem(INSTALL_KEY)) return;
@@ -1412,7 +1439,7 @@
 			const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches
 				|| window.navigator.standalone === true;
 
-			if (isInStandaloneMode) return; // Déjà installé
+			if (isInStandaloneMode) return; // Déjà installé — bannière inutile mais SW déjà enregistré ci-dessus
 
 			if (isIOS) {
 				// iOS Safari : afficher après 3 secondes
@@ -1453,16 +1480,6 @@
 				});
 			}
 
-			// Enregistrement du Service Worker
-			if ('serviceWorker' in navigator) {
-				window.addEventListener('load', () => {
-					navigator.serviceWorker.register('sw.js').then(reg => {
-						console.log('✅ SW enregistré:', reg.scope);
-					}).catch(err => {
-						console.warn('SW erreur:', err);
-					});
-				});
-			}
 		})();
 		</script>
 	</body>
